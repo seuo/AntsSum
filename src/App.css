@@ -24,6 +24,62 @@ h1, h2, h3, h4, h5 {
   height: 100vh;
 }
 
+.wrap .loginModal {
+  color: #8c8c8c;
+}
+
+.wrap .loginModal .accordion .card .card-header {
+  border: none;
+  border-bottom: #495158;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.wrap .loginModal .accordion .card .card-header button {
+  color: #3f3f3f;
+}
+
+.wrap .loginModal span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1em;
+}
+
+.wrap .loginModal span a {
+  color: #495158;
+  font-size: 1.5em;
+}
+
+.wrap .loginModal .loginForm {
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.wrap .loginModal .loginForm input {
+  border: none;
+  border-bottom: solid thin #495158;
+  border-radius: 0;
+}
+
+.wrap .loginModal .loginForm button {
+  background-color: #495158;
+  border: none;
+}
+
 .wrap .Header {
   position: relative;
 }
@@ -39,6 +95,17 @@ h1, h2, h3, h4, h5 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.wrap .Header .navBarbot .loginButton {
+  background-color: transparent;
+  color: #3f3f3f;
+  border-radius: .1em;
+  border: thin solid #495158;
+  color: #8c8c8c;
+  text-align: center;
+  padding: .2em;
+  cursor: pointer;
 }
 
 .wrap .Header .navBarbot button.navbar-toggler {
@@ -61,7 +128,7 @@ h1, h2, h3, h4, h5 {
   text-align: right;
   background-color: #343a40;
   padding: 2em;
-  top: 7.4em;
+  top: 7.8em;
   z-index: 999;
 }
 
@@ -74,6 +141,7 @@ h1, h2, h3, h4, h5 {
   background-color: #343a40;
   border-radius: .2em;
   border: thin solid #495158;
+  color: #8c8c8c;
 }
 
 .wrap .Header .navBarbot .searchBar .input-group-append {
@@ -169,7 +237,7 @@ h1, h2, h3, h4, h5 {
 
 .section .catagories .nav.nav-pills .nav-link.active {
   color: #fff;
-  background-color: #3f3f3f;
+  background-color: #495158;
 }
 
 .section .Items {
@@ -217,7 +285,7 @@ h1, h2, h3, h4, h5 {
   background-color: rgba(255, 255, 255, 0);
   width: 100%;
   border-radius: 0;
-  color: #0c0c0c;
+  color: #3f3f3f;
   font-weight: 500;
 }
 
@@ -225,7 +293,7 @@ h1, h2, h3, h4, h5 {
   background-color: white;
   color: #8c8c8c;
   text-align: center;
-  border-bottom: thin solid #3f3f3f;
+  border-bottom: thin solid #495158;
   cursor: pointer;
 }
 
@@ -244,17 +312,6 @@ h1, h2, h3, h4, h5 {
   font-family: Raleway;
 }
 
-.section .LoginButton {
-  background-color: #f2f2f2;
-  color: #0c0c0c;
-  border-radius: 3em;
-  margin: 2em;
-  margin-top: 1.5em;
-  text-align: center;
-  padding: 1em;
-  cursor: pointer;
-}
-
 .section .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -266,23 +323,6 @@ h1, h2, h3, h4, h5 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-.section .LoginGrp {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.section .LoginGrp .LoginModal {
-  background: #0c0c0c;
 }
 
 @media (min-width: 576px) {

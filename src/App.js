@@ -3,50 +3,142 @@ import { Router, Link, navigate } from '@reach/router'
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import Modal from 'react-responsive-modal';
-import { Media,Col,Dropdown,DropdownButton,ButtonToolbar,Carousel,Accordion,Card,Button,Form,Nav,NavDropdown,Navbar,Image,FormControl,InputGroup } from 'react-bootstrap';
+import { Media,Dropdown,DropdownButton,ButtonToolbar,Col,Carousel,Accordion,Card,Button,Form,Nav,NavDropdown,Navbar,Image,FormControl,InputGroup } from 'react-bootstrap';
 import './App.css';
+import Modal from 'react-awesome-modal';
+
+import RouteLogin from './RouteLogin';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      visible : false
     };
   }
 
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
- 
-  onCloseModal = () => {
-    this.setState({ open: false });
-  };
+  openModal() {
+    this.setState({
+        visible : true
+    });
+}
 
+closeModal() {
+    this.setState({
+        visible : false
+    });
+}
 
 render() {
 
-  const { open } = this.state;
-
   return (
     <div className="wrap">
-      <div className="Header">
 
+
+                <Modal visible={this.state.visible}  width="95%" height="80%" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div className="loginModal">
+
+                    <span><h6>Login or Register to buy & sell</h6><a href="javascript:void(0);" onClick={() => this.closeModal()}><i className="far fa-window-close"></i></a></span>
+                    <Accordion defaultActiveKey="0">
+                        <Card>
+                          <Card.Header>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                              Login
+                            </Accordion.Toggle>
+                          </Card.Header>
+                          <Accordion.Collapse eventKey="0">
+                                              <Form className="loginForm">
+                                                    
+                                                    <Form.Group controlId="formBasicEmail">
+                                                      <Form.Control type="text" placeholder="Username" />
+                                                      <Form.Text className="text-muted">
+                                                      </Form.Text>
+                                                    </Form.Group>
+
+                                                    <Form.Group controlId="formBasicPassword">
+                                                      <Form.Control type="password" placeholder="Password" />
+                                                    </Form.Group>
+                                                    <Button variant="primary" type="submit">
+                                                      Login
+                                                    </Button>
+                                                  </Form>
+                          </Accordion.Collapse>
+                        </Card>
+                        <Card>
+                          <Card.Header>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                              Register
+                            </Accordion.Toggle>
+                          </Card.Header>
+                          <Accordion.Collapse eventKey="1">
+                          <Form className="loginForm">
+                           
+                          <Form.Row>
+                            <Form.Group as={Col} controlId="formGridEmail">
+                              
+                              <Form.Control type="email" placeholder="Enter email" />
+                            </Form.Group>
+
+                            <Form.Group as={Col} controlId="formGridPassword">
+                              
+                              <Form.Control type="password" placeholder="Password" />
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Form.Group controlId="formGridAddress1">
+                            
+                            <Form.Control placeholder="Street Address" />
+                          </Form.Group>
+
+                            <Form.Group controlId="formGridAddress2">
+                            
+                            <Form.Control placeholder="Apartment, studio, or floor" />
+                          </Form.Group>
+
+                       
+                          
+
+                              <Form.Group  controlId="formGridCity">
+                             
+                              <Form.Control placeholder="City"/>
+                            </Form.Group>
+
+
+                    
+
+                         
+
+                          <Button variant="primary" type="submit">
+                            Register
+                          </Button>
+                        </Form>
+                          </Accordion.Collapse>
+                        </Card>
+                      </Accordion>
+
+
+                           
+                            
+
+                    </div>
+                </Modal>
+
+
+      <div className="Header">
         <Navbar className="Navbar" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Image className="Logo" src={require('./logo.png')} fluid />
-        
         <div className="navBarbot">
-
+        
         <InputGroup className="searchBar">
         <InputGroup.Append>
-          <Button variant="outline-secondary"><i class="fas fa-search"></i></Button>
+          <Button variant="outline-secondary"><i className="fas fa-search"></i></Button>
         </InputGroup.Append>
         <FormControl
           placeholder="Search"
           aria-label="Search"
           aria-describedby="basic-addon2"
         />
-
+<input className="loginButton" type="button" value="Login" onClick={() => this.openModal()} />
       </InputGroup>
           <Navbar.Toggle className="userControl" aria-controls="responsive-navbar-nav" />
           
@@ -159,6 +251,7 @@ render() {
                       </Carousel.Item>
                     </Carousel>
                 </div>
+                
       </div>
     </div>
   );

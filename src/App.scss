@@ -23,8 +23,9 @@ $color-0: rgba(252,252,252, 1);
 $color-1: rgba(242,242,242, 1);
 $color-2: rgba(191,191,191, 1);
 $color-3: rgba(140,140,140, 1);
-$color-4: rgba(63,63,63, 1);
-$color-5: rgba(12,12,12, 1);
+$color-4: rgb(73, 81, 88);
+$color-5: rgba(63,63,63, 1);
+$color-6: rgba(12,12,12, 1);
 
 
 
@@ -32,6 +33,49 @@ $color-5: rgba(12,12,12, 1);
 .wrap {
     background-color:$color-0;
     height:100vh;
+    .loginModal {
+        color:$color-3;
+        .accordion {
+            .card {
+
+                .card-header {
+                    border:none;
+                    border-bottom:$color-4;
+                    background-color:transparent;
+                    margin:0;
+                    padding: 0;
+                    button{
+                        color:$color-5;
+                    }
+                }
+            }
+        }
+        span {
+            display:flex;
+            justify-content: space-between;
+            padding:1em;
+            a {
+                color:$color-4;
+                font-size:1.5em;
+            }
+        }
+        .loginForm {
+            padding: 1em;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            input {
+                border:none;
+                border-bottom:solid thin rgb(73, 81, 88);
+                border-radius:0;
+            }
+            button {
+                background-color:  $color-4;
+                border:none;
+            }
+        }
+    }
     .Header {
         position:relative;
         .navBarbot {
@@ -39,6 +83,17 @@ $color-5: rgba(12,12,12, 1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .loginButton {
+                background-color:transparent;
+                color:$color-5;
+                border-radius: .1em;
+                border:thin solid $color-4;
+                color:$color-3;
+                text-align: center;
+                padding: .2em;
+                cursor: pointer;
+            }
+        
             button.navbar-toggler {
                 top: 18vw;
                 right: 2.5em;
@@ -57,7 +112,7 @@ $color-5: rgba(12,12,12, 1);
                 text-align: right;
                 background-color: #343a40;
                 padding: 2em;
-                top: 7.4em;
+                top: 7.8em;
                 z-index: 999;
             }
             .searchBar {
@@ -66,8 +121,8 @@ $color-5: rgba(12,12,12, 1);
                 input {
                     background-color: #343a40;
                     border-radius:.2em;
-                    border:thin solid #495158;
-                    // color:$color-1;
+                    border:thin solid $color-4;
+                    color:$color-3;
                 }
                 
                 .input-group-append {
@@ -171,38 +226,28 @@ $color-5: rgba(12,12,12, 1);
         }
     }
 
-    .FilterCat {
-        background-color:white;
-        color:$color-3;
-        text-align: center;
-        border-bottom:thin solid $color-4;
-        cursor: pointer;
-        .card {
-            background: white;
-        }
-        .card-header {
+            .FilterCat {
+                background-color:white;
+                color:$color-3;
+                text-align: center;
+                border-bottom:thin solid $color-4;
+                cursor: pointer;
+                .card {
+                    background: white;
+                }
+                .card-header {
+                    
+                    padding: 0;
+                    background-color: white;
+                    border:0;
+                    padding: .3em;
+                    h3 {
+                        font-family:Raleway;
+                    }
+                }
             
-            padding: 0;
-            background-color: white;
-            border:0;
-            padding: .3em;
-            h3 {
-                font-family:Raleway;
             }
-        }
-    
-    }
 
-    .LoginButton {
-        background-color:$color-1;
-        color:$color-5;
-        border-radius: 3em;
-        margin:2em;
-        margin-top:1.5em;
-        text-align: center;
-        padding: 1em;
-        cursor: pointer;
-    }
 
     
 
@@ -212,14 +257,6 @@ $color-5: rgba(12,12,12, 1);
         flex-direction: column;
     }
 
-    .LoginGrp { 
-        display:flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        .LoginModal {
-            background:$color-5;
-        }
-}
 
 }
 
