@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, Button,ToggleButton,ToggleButtonGroup, Dropdown, Form} from 'react-bootstrap';
 
-class UserAdmin extends Component {
+class RouteAddProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,4 +51,4 @@ class UserAdmin extends Component {
     }
 }
 
-export default UserAdmin;
+export default RouteAddProduct;

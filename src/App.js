@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
-import Products from './products';
-import UserAdmin from './userAdmin';
+
+import Products from './Products';
+import RouteAddProduct from './RouteAddProduct';
 import UserProductList from './userProductList';
+import RouteProducts from './RouteProducts';
+import RouteLogin from './RouteLogin';
+import {getTypes, getSingleUser} from './API';
 
 import {Router, Link, navigate} from '@reach/router';
 import AliceCarousel from 'react-alice-carousel';
@@ -21,17 +25,15 @@ import {
 } from 'react-bootstrap';
 import './App.css';
 import Modal from 'react-awesome-modal';
-
 import 'react-multi-carousel/lib/styles.css';
-import RouteLogin from './RouteLogin';
-
-
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
+            types:[],
+            currentUser: null
         };
     }
 
@@ -43,8 +45,29 @@ class App extends Component {
         this.setState({visible: false});
     }
 
-    render() {
 
+    setCurrentUser = (user) => {
+        this.setState({currentUser:user})
+        }
+    
+      handleLogoutClick = () => {
+        localStorage.removeItem('userId')
+        this.setState({currentUser:null})
+        navigate('/home')
+      }
+      componentDidMount(){
+        getTypes().then(res => this.setState({types:res.data}))
+    
+        //local storage
+        var userId = localStorage.getItem('userId')
+    
+        if(userId){
+          getSingleUser(userId).then(res => this.setState({currentUser:res.data}))
+        }
+      }
+
+    render() {
+        var {types, currentUser} = this.state
         return (
             <div className="wrap">
 
@@ -62,85 +85,22 @@ class App extends Component {
                                 <i className="far fa-window-close"></i>
                             </a>
                         </span>
-                        <Accordion defaultActiveKey="0">
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                        Login
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Form className="loginForm">
-
-                                        <Form.Group controlId="formBasicEmail">
-                                            <Form.Control type="text" placeholder="Username"/>
-                                            <Form.Text className="text-muted"></Form.Text>
-                                        </Form.Group>
-
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Control type="password" placeholder="Password"/>
-                                        </Form.Group>
-                                        <Button variant="primary" type="submit">
-                                            Login
-                                        </Button>
-                                    </Form>
-                                </Accordion.Collapse>
-                            </Card>
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                                        Register
-                                    </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="1">
-                                    <Form className="loginForm">
-
-                                        <Form.Row>
-                                            <Form.Group as={Col} controlId="formGridEmail">
-
-                                                <Form.Control type="email" placeholder="Enter email"/>
-                                            </Form.Group>
-
-                                            <Form.Group as={Col} controlId="formGridPassword">
-
-                                                <Form.Control type="password" placeholder="Password"/>
-                                            </Form.Group>
-                                        </Form.Row>
-
-                                        <Form.Group controlId="formGridAddress1">
-
-                                            <Form.Control placeholder="Street Address"/>
-                                        </Form.Group>
-
-                                        <Form.Group controlId="formGridAddress2">
-
-                                            <Form.Control placeholder="Apartment, studio, or floor"/>
-                                        </Form.Group>
-
-                                        <Form.Group controlId="formGridCity">
-
-                                            <Form.Control placeholder="City"/>
-                                        </Form.Group>
-
-                                        <Button variant="primary" type="submit">
-                                            Register
-                                        </Button>
-                                    </Form>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
+                    <RouteLogin/>
 
                     </div>
                 </Modal>
 
                 <div className="Header">
+                {
+              currentUser? (<span>Welcome {currentUser.name}</span>) : null
+            }
                     <Navbar
                         className="Navbar"
                         collapseOnSelect="collapseOnSelect"
                         expand="lg"
                         bg="dark"
                         variant="dark">
-                        <Image className="Logo" src={require('./logo.png')} fluid="fluid"/>
+                        <Link to="/home"><Image className="Logo" src={require('./logo.png')} fluid="fluid"/></Link>
                         <div className="navBarbot">
 
                             <InputGroup className="searchBar">
@@ -153,22 +113,50 @@ class App extends Component {
                                     placeholder="Search"
                                     aria-label="Search"
                                     aria-describedby="basic-addon2"/>
-                                <input
-                                    className="loginButton"
-                                    type="button"
-                                    value="Login"
-                                    onClick={() => this.openModal()}/>
-                            </InputGroup>
-                            <Navbar.Toggle className="userControl" aria-controls="responsive-navbar-nav"/>
+                                 </InputGroup>
+                                 <input
+                                                                                        className="loginButton"
+                                                                                        type="button"
+                                                                                        value="Login"
+                                                                                        onClick={() => this.openModal()}/>
+                                 <Navbar.Toggle className="userControl" aria-controls="responsive-navbar-nav"/>
 
-                            <Navbar.Collapse id="responsive-navbar-nav">
-                                <Nav className="mr-auto">
-                                    <Nav.Link href="#sell">+ Sell an Item</Nav.Link>
-                                    <Nav.Link href="#userprofile">User Profile</Nav.Link>
-                                    <Nav.Link href="#watchlist">Watch List</Nav.Link>
-                                    <Nav.Link href="#reviews">My Reviews</Nav.Link>
-                                </Nav>
-                            </Navbar.Collapse>
+                                <Navbar.Collapse id="responsive-navbar-nav">
+                                    <Nav className="mr-auto">
+                                        <Nav.Link href="/sell">+ Sell an Item</Nav.Link>
+                                        <Nav.Link href="#userprofile">User Profile</Nav.Link>
+                                        <Nav.Link href="/my-products">My Products</Nav.Link>
+                                        <Nav.Link href="#watchlist">Watch List</Nav.Link>
+                                        <Nav.Link href="#reviews">My Reviews</Nav.Link>
+                                    </Nav>
+                                </Navbar.Collapse>
+                               
+                                {/* {
+                                    currentUser ? (
+                                    <>
+                                    
+                                    <Navbar.Toggle className="userControl" aria-controls="responsive-navbar-nav"/>
+
+                                    <Navbar.Collapse id="responsive-navbar-nav">
+                                        <Nav className="mr-auto">
+                                            <Nav.Link href="#sell">+ Sell an Item</Nav.Link>
+                                            <Nav.Link href="#userprofile">User Profile</Nav.Link>
+                                            <Nav.Link href="#watchlist">Watch List</Nav.Link>
+                                            <Nav.Link href="#reviews">My Reviews</Nav.Link>
+                                        </Nav>
+                                    </Navbar.Collapse>
+                                    </>
+                                    ) : (
+                                    <>
+                    <input
+                                                        className="loginButton"
+                                                        type="button"
+                                                        value="Login"
+                                                        onClick={() => this.openModal()}/>
+                                    </>
+                                    )
+                                } */}
+
 
                         </div>
                     </Navbar>
@@ -186,28 +174,28 @@ class App extends Component {
                                 <Accordion.Collapse eventKey="0">
                                     <Nav variant="pills" defaultActiveKey="/home">
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-1">Clothing & Fashion</Nav.Link>
+                                            <Nav.Link eventKey="cat-1">NEW ITEMS</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-2">Vehicles</Nav.Link>
+                                            <Nav.Link eventKey="cat-2">Suits</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-3">Tech</Nav.Link>
+                                            <Nav.Link eventKey="cat-3">Footwear</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-4">Sport</Nav.Link>
+                                            <Nav.Link eventKey="cat-4">Clothing</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
                                             <Nav.Link eventKey="cat-5">Outdoors</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-6">Home & Garden</Nav.Link>
+                                            <Nav.Link eventKey="cat-6">Active Wear</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-7">Baby Gear</Nav.Link>
+                                            <Nav.Link eventKey="cat-7">Accessories</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
-                                            <Nav.Link eventKey="cat-8">Cooking</Nav.Link>
+                                            <Nav.Link eventKey="cat-8">Mobile Phones</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
                                             <Nav.Link eventKey="cat-9">Toys</Nav.Link>
@@ -233,9 +221,16 @@ class App extends Component {
                         </Accordion>
                     </div>
 
-                  <Products/>
-                  <UserAdmin/>
-                  <UserProductList/>
+                  
+
+
+                <Router>
+                    <Products path="/home"/>
+                    <RouteAddProduct path="/sell"/>
+                    <UserProductList path="/my-products"/>
+                    <RouteProducts path="/products" />
+                    <RouteLogin setCurrentUser={this.setCurrentUser} path="/home" />
+                </Router>
 
                 </div>
             </div>

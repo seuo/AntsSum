@@ -19,6 +19,25 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Color Theme Swatches in RGBA */
+.react-multi-carousel-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.carousel-container {
+  background-color: #f2f2f2;
+}
+
+.carousel-container2 {
+  background-color: #fcfcfc;
+}
+
+.ProductList {
+  padding-top: 5em;
+  background-color: #f2f2f2;
+}
+
 .Item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27,7 +46,6 @@ h1, h2, h3, h4, h5 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  overflow: scroll;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -37,7 +55,6 @@ h1, h2, h3, h4, h5 {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 70%;
           flex: 1 0 70%;
-  background-color: #f2f2f2;
   padding: 1em;
 }
 
@@ -52,7 +69,10 @@ h1, h2, h3, h4, h5 {
       -ms-flex-pack: end;
           justify-content: flex-end;
   background-color: transparent;
-  height: 21em;
+}
+
+.Item .card .card-img-top {
+  padding: 1em;
 }
 
 .Item .card .card-body {
@@ -218,6 +238,12 @@ h1, h2, h3, h4, h5 {
 .Header .navBarbot .searchBar {
   border-radius: 2em 0em 0em 2em;
   height: 2.3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .Header .navBarbot .searchBar input {
@@ -225,6 +251,7 @@ h1, h2, h3, h4, h5 {
   border-radius: .2em;
   border: thin solid #495158;
   color: #8c8c8c;
+  height: 2em;
 }
 
 .Header .navBarbot .searchBar .input-group-append {
@@ -364,9 +391,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .section .catagories .nav.nav-pills {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   padding-top: 1em;
 }
 
