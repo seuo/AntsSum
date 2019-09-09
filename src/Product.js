@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Router, Link, navigate} from '@reach/router';
+import RouteProduct from './RouteProduct';
 import {
     Card,
     Button,
@@ -13,6 +15,7 @@ class Product extends Component {
     render() {
 
         return (
+           
             <div className="Item">
                 <Card
                     style={{
@@ -20,7 +23,7 @@ class Product extends Component {
                     }}>
                     <Card.Img variant="top" src="/item4.png"/>
                     <Card.Body>
-                        <Card.Title>Item 4<Button variant="outline-dark">
+                        <Card.Title>Product 1<Button variant="outline-dark">
                                 <i class="far fa-heart"></i>
                             </Button>
                         </Card.Title>
@@ -30,6 +33,11 @@ class Product extends Component {
                         </Button>
                     </Card.Body>
                 </Card>
+
+                <Router>
+                    <RouteProduct path="/product"/>
+                </Router>
+                
             </div>
 
         )

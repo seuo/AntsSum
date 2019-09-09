@@ -3,6 +3,7 @@ import {
     Card,
     Button,
 } from 'react-bootstrap';
+import {Router, Link, navigate} from '@reach/router';
 import Product from './Product';
 import Carousel from 'react-multi-carousel';
 
@@ -50,7 +51,9 @@ class Products extends Component {
             infinite={true} autoPlay={this.props.deviceType !== "mobile"
                 ? false
                 : false} autoPlaySpeed={1000} keyBoardControl={true} customTransition="ease all 1s" transitionDuration={500} containerClass="carousel-container" removeArrowOnDeviceType={["tablet", "mobile"]} deviceType={this.props.deviceType} dotListClass="custom-dot-list-style" itemClass="CarousalItem carousel-item-padding-40-px" partialVisbile={true}>
+
         <Product/>
+        
             <div className="Item">
                 <Card
                     style={{
@@ -169,6 +172,9 @@ class Products extends Component {
                 </Card>
             </div>
         </Carousel>
+        <Router>
+            <Product path="/product"/>
+        </Router>
         </div>
         )
     }
