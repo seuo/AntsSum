@@ -16,6 +16,14 @@
     background-color:$color-1;
 }
 
+.editButton {
+    padding: .5em;
+    text-align: left;
+    border: #cdcdcd;
+    background-color: white;
+    padding-left: 1.2em;
+}
+
 .Item {
 display: flex;
 flex-direction: column;

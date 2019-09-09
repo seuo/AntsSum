@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 
 import Products from './Products';
 import RouteAddProduct from './RouteAddProduct';
-import UserProductList from './userProductList';
+import RouteUserProductList from './RouteUserProductList';
+import RouteUserProfile from './RouteUserProfile';
 import RouteProducts from './RouteProducts';
 import RouteLogin from './RouteLogin';
+import RouteReviews from './RouteReview';
 import {getTypes, getSingleUser} from './API';
 
 import {Router, Link, navigate} from '@reach/router';
@@ -12,11 +14,9 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {
-    Col,
     Accordion,
     Card,
     Button,
-    Form,
     Nav,
     Navbar,
     Image,
@@ -124,10 +124,10 @@ class App extends Component {
                                 <Navbar.Collapse id="responsive-navbar-nav">
                                     <Nav className="mr-auto">
                                         <Nav.Link href="/sell">+ Sell an Item</Nav.Link>
-                                        <Nav.Link href="#userprofile">User Profile</Nav.Link>
+                                        <Nav.Link href="/user-profile">User Profile</Nav.Link>
                                         <Nav.Link href="/my-products">My Products</Nav.Link>
                                         <Nav.Link href="#watchlist">Watch List</Nav.Link>
-                                        <Nav.Link href="#reviews">My Reviews</Nav.Link>
+                                        <Nav.Link href="/my-reviews">My Reviews</Nav.Link>
                                     </Nav>
                                 </Navbar.Collapse>
                                
@@ -227,9 +227,11 @@ class App extends Component {
                 <Router>
                     <Products path="/home"/>
                     <RouteAddProduct path="/sell"/>
-                    <UserProductList path="/my-products"/>
+                    <RouteUserProductList path="/my-products"/>
                     <RouteProducts path="/products" />
                     <RouteLogin setCurrentUser={this.setCurrentUser} path="/home" />
+                    <RouteReviews path="/my-reviews" />
+                    <RouteUserProfile path="/user-profile" />
                 </Router>
 
                 </div>
