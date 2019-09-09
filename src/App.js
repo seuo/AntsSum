@@ -226,6 +226,7 @@ class App extends Component {
 
                 <Router>
                     <Products path="/home"/>
+                    
                     <RouteAddProduct path="/sell"/>
                     <RouteUserProductList path="/my-products"/>
                     <RouteProducts path="/products" />

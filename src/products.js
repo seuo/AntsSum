@@ -3,6 +3,7 @@ import {
     Card,
     Button,
 } from 'react-bootstrap';
+import Product from './Product';
 import Carousel from 'react-multi-carousel';
 
 const responsive = {
@@ -49,42 +50,7 @@ class Products extends Component {
             infinite={true} autoPlay={this.props.deviceType !== "mobile"
                 ? false
                 : false} autoPlaySpeed={1000} keyBoardControl={true} customTransition="ease all 1s" transitionDuration={500} containerClass="carousel-container" removeArrowOnDeviceType={["tablet", "mobile"]} deviceType={this.props.deviceType} dotListClass="custom-dot-list-style" itemClass="CarousalItem carousel-item-padding-40-px" partialVisbile={true}>
-            <div className="Item">
-                <Card
-                    style={{
-                        width: '18rem'
-                    }}>
-                    <Card.Img variant="top" src="/item1.png"/>
-                    <Card.Body>
-                        <Card.Title>Item 1<Button variant="outline-dark">
-                                <i class="far fa-heart"></i>
-                            </Button>
-                        </Card.Title>
-                        <Card.Text></Card.Text>
-                        <Button className="AddButton" variant="primary">Add to Cart
-                            <span className="itemPrice">$235.00</span>
-                        </Button>
-                    </Card.Body>
-                </Card>
-            </div>
-            <div className="Item">
-                <Card
-                    style={{
-                        width: '18rem'
-                    }}>
-                    <Card.Img variant="top" src="/item2.png"/>
-                    <Card.Body>
-                        <Card.Title>Item 2<Button variant="outline-dark">
-                                <i class="far fa-heart"></i>
-                            </Button>
-                        </Card.Title>
-                        <Card.Text></Card.Text>
-                        <Button className="AddButton" variant="primary">Add to Cart
-                            <span className="itemPrice">$235.00</span>
-                        </Button>
-                    </Card.Body>
-                </Card>
-            </div>
+        <Product/>
             <div className="Item">
                 <Card
                     style={{
