@@ -10,8 +10,6 @@ import RouteReviews from './RouteReview';
 import {getTypes, getSingleUser} from './API';
 
 import {Router, Link, navigate} from '@reach/router';
-import AliceCarousel from 'react-alice-carousel';
-import "react-alice-carousel/lib/alice-carousel.css";
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {
     Accordion,
